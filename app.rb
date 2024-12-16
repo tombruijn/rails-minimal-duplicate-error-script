@@ -4,7 +4,7 @@ require "bundler/inline"
 gemfile(true) do
   source "https://rubygems.org"
 
-  gem "rails", "8.0.0.1"
+  gem "rails", github: "rails/rails", :ref => "a725732b3dee53a102d62cb193c02dc886bbb7ea"
 end
 
 require "action_controller/railtie"
@@ -22,7 +22,7 @@ class TestApp < Rails::Application
 
   # development: true
   # production: false
-  config.consider_all_requests_local = ENV["RAILS_ENV"] != "production"
+  config.enable_reloading = ENV["RAILS_ENV"] != "production"
 end
 class MyErrorSubscriber
   def self.reported_errors
@@ -57,6 +57,8 @@ class BugTest < ActiveSupport::TestCase
 
   def test_returns_success
     get "/"
+
+    puts "enable_reloading: #{Rails.application.config.enable_reloading}"
 
     errors = MyErrorSubscriber.reported_errors
     pp errors
