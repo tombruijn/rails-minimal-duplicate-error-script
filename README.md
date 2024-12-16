@@ -5,7 +5,7 @@
 This test app illustrates the difference between the development and production environments and how the errors are reported to error subscribers.
 
 - In development, it reports the `ActionView::Template::Error` error.
-- In production, it reports both the `NoMethodError` error.
+- In production, it reports the `NoMethodError` error.
 
 ```
 # Start in development environment
